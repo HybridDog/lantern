@@ -1,11 +1,11 @@
-
 --
 -- register nodes:
 --
+
 minetest.register_node("lantern:lantern", {
 	description = "Lantern",
 	drawtype = "nodebox",
-	tiles = {"lantern_tb.png","lantern_tb.png","lantern.png","lantern.png","lantern.png","lantern.png"},
+	tiles = {"lantern_tb.png","lantern_tb.png","lantern.png"},
 	inventory_image = minetest.inventorycube("lantern_inv.png"),
 	wield_image = minetest.inventorycube("lantern_inv.png"),
 	paramtype = "light",
@@ -20,7 +20,7 @@ minetest.register_node("lantern:lantern", {
 		wall_top = {-1/6, 1/6, -1/6, 1/6, 0.5, 1/6},
 		wall_bottom = {-1/6, -0.5, -1/6, 1/6, -1/6, 1/6},
 		wall_side = {-1/6, -1/6, -1/6, -0.5, 1/6, 1/6},
-		},
+	},
 })
 
 minetest.register_node("lantern:fence_black", {
@@ -33,9 +33,9 @@ minetest.register_node("lantern:fence_black", {
 	groups = {choppy = 2, oddly_breakable_by_hand = 3},
 	sounds = default.node_sound_defaults(),
 	selection_box = {
-	type = "fixed",
+		type = "fixed",
 		fixed = {-1/7, -1/2, -1/7, 1/7, 1/2, 1/7},
-		},
+	},
 })
 
 minetest.register_node("lantern:candle", {
@@ -43,8 +43,8 @@ minetest.register_node("lantern:candle", {
 	drawtype = "plantlike",
 	inventory_image = "candle_inv.png",
 	tiles = {
-			{name="candle.png", animation={type = "vertical_frames", aspect_w = 32, aspect_h = 32, length = 0.8}},
-		},
+		{name="candle.png", animation={type = "vertical_frames", aspect_w = 32, aspect_h = 32, length = 0.8}},
+	},
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = false,
@@ -52,14 +52,14 @@ minetest.register_node("lantern:candle", {
 	groups = {dig_immediate = 3, attached_node = 1},
 	sounds = default.node_sound_defaults(),
 	selection_box = {
-			type = "fixed",
-			fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
-		},
+		type = "fixed",
+		fixed = { -0.15, -0.5, -0.15, 0.15, 0.2, 0.15 },
+	},
 })
 
 minetest.register_node("lantern:lamp", {
 	description = "Lamp",
-	tiles = {"default_obsidian.png", "default_obsidian.png", "lantern_lamp.png", "lantern_lamp.png", "lantern_lamp.png", "lantern_lamp.png"},
+	tiles = {"default_obsidian.png", "default_obsidian.png", "lantern_lamp.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = true,
@@ -68,198 +68,136 @@ minetest.register_node("lantern:lamp", {
 	sounds = default.node_sound_glass_defaults(),
 })
 
---
--- register lampposts in all 4 directions
---
-minetest.register_node("lantern:lantern_lampost1", {
-	description = "Lampost 1",
-	drawtype = "fencelike",
-	tiles = {"default_obsidian.png"},
-	inventory_image = "lamppost1.png",
-	wield_image = "lamppost_inv.png",
-	paramtype = "light",
-	is_ground_content = true,
-	walkable = true,
-	groups = {choppy = 2, dig_immediate = 2},
-	sounds = default.node_sound_defaults(),
-	after_place_node = function(pos)
-		minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},{name = "lantern:fence_lampost"})
-		minetest.set_node({x = pos.x, y = pos.y + 2, z = pos.z},{name = "lantern:fence_lampost"})
-		minetest.set_node({x = pos.x, y = pos.y + 3, z = pos.z},{name = "lantern:fence_lampost"})
-		minetest.set_node({x = pos.x - 1, y = pos.y + 3, z = pos.z },{name = "lantern:fence_lampost"})
-		minetest.set_node({x = pos.x - 1, y = pos.y + 2, z = pos.z },{name = "lantern:lamp1"})
-	end
-})
 
-
-minetest.register_node("lantern:lantern_lampost2", {
-	description = "Lampost 2",
-	drawtype = "fencelike",
-	tiles = {"default_obsidian.png"},
-	inventory_image = "lamppost2.png",
-	wield_image = "lamppost_inv.png",
-	paramtype = "light",
-	is_ground_content = true,
-	walkable = true,
-	groups = {choppy = 2, dig_immediate = 2},
-	sounds = default.node_sound_defaults(),
-	after_place_node = function(pos)
-		minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},{name = "lantern:fence_lampost"})
-		minetest.set_node({x = pos.x, y = pos.y + 2, z = pos.z},{name = "lantern:fence_lampost"})
-		minetest.set_node({x = pos.x, y = pos.y + 3, z = pos.z},{name = "lantern:fence_lampost"})
-		minetest.set_node({x = pos.x, y = pos.y + 3, z = pos.z - 1},{name = "lantern:fence_lampost"})
-		minetest.set_node({x = pos.x, y = pos.y + 2, z = pos.z - 1},{name = "lantern:lamp2"})
-	end
-})
-
-
-minetest.register_node("lantern:lantern_lampost3", {
-	description = "Lampost 3",
-	drawtype = "fencelike",
-	tiles = {"default_obsidian.png"},
-	inventory_image = "lamppost3.png",
-	wield_image = "lamppost_inv.png",
-	paramtype = "light",
-	is_ground_content = true,
-	walkable = true,
-	groups = {choppy = 2, dig_immediate = 2},
-	sounds = default.node_sound_defaults(),
-	after_place_node = function(pos)
-		minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},{name = "lantern:fence_lampost"})
-		minetest.set_node({x = pos.x, y = pos.y + 2, z = pos.z},{name = "lantern:fence_lampost"})
-		minetest.set_node({x = pos.x, y = pos.y + 3, z = pos.z},{name = "lantern:fence_lampost"})
-		minetest.set_node({x = pos.x + 1, y = pos.y + 3, z = pos.z},{name = "lantern:fence_lampost"})
-		minetest.set_node({x = pos.x + 1, y = pos.y + 2, z = pos.z},{name = "lantern:lamp3"})
-	end
-	})
-
-
-minetest.register_node("lantern:lantern_lampost4", {
-	description = "Lampost 4",
-	drawtype = "fencelike",
-	tiles = {"default_obsidian.png"},
-	inventory_image = "lamppost4.png",
-	wield_image = "lamppost_inv.png",
-	paramtype = "light",
-	is_ground_content = true,
-	walkable = true,
-	groups = {choppy = 2, dig_immediate = 2},
-	sounds = default.node_sound_defaults(),
-	after_place_node = function(pos)
-		minetest.set_node({x = pos.x, y = pos.y + 1, z = pos.z},{name = "lantern:fence_lampost"})
-		minetest.set_node({x = pos.x, y = pos.y + 2, z = pos.z},{name = "lantern:fence_lampost"})
-		minetest.set_node({x = pos.x, y = pos.y + 3, z = pos.z},{name = "lantern:fence_lampost"})
-		minetest.set_node({x = pos.x, y = pos.y + 3, z = pos.z + 1},{name = "lantern:fence_lampost"})
-		minetest.set_node({x = pos.x, y = pos.y + 2, z = pos.z + 1},{name = "lantern:lamp4"})
-	end
-})
-
---
 -- this node is only used  for lampost and can't be crafted/used by the player
---
 minetest.register_node("lantern:fence_lampost", {
 	description = "Fence Lamppost",
 	drawtype = "fencelike",
 	tiles = {"default_obsidian.png"},
 	paramtype = "light",
-	is_ground_content = true,
-	walkable = true,
+	drop = "",
+	pointable = false,
 	groups = {choppy = 2, not_in_creative_inventory = 1},
 	sounds = default.node_sound_defaults(),
 })
 
+-- tests if a player could place there
+local function node_allowed(pos, pname)
+	if minetest.is_protected(pos, pname) then
+		return false
+	end
+	local def = minetest.registered_nodes[minetest.get_node(pos).name]
+	if not def
+	or not def.buildable_to then
+		return false
+	end
+	return true
+end
+
+-- how x and z change for different param2s
+local lamp_adps = {[0]={0,-1}, {-1,0}, {0,1}, {1,0}}
+
+-- places the lamp and its fence lampost
+local function place_lamp(pos, param2, pname)
+	local ax,az = unpack(lamp_adps[param2])
+	minetest.remove_node(pos)
+	pos.y = pos.y-1
+	for _ = 0,3 do
+		pos.y = pos.y+1
+		if node_allowed(pos, pname) then
+			minetest.set_node(pos, {name = "lantern:fence_lampost"})
+		end
+	end
+
+	if az == 0 then
+		pos.x = pos.x+ax
+	else
+		pos.z = pos.z+az
+	end
+	if node_allowed(pos, pname) then
+		minetest.set_node(pos, {name = "lantern:fence_lampost"})
+	end
+
+	pos.y = pos.y-1
+	if node_allowed(pos, pname) then
+		minetest.set_node(pos, {name = "lantern:lamp_post", param2 = param2})
+	end
+end
+
+-- removes the lampost
+local function remove_lamp(pos, param2)
+	local ax,az = unpack(lamp_adps[param2])
+	if az == 0 then
+		pos.x = pos.x-ax
+	else
+		pos.z = pos.z-az
+	end
+	pos.y = pos.y-2
+
+	pos.y = pos.y-1
+	for _ = 0,3 do
+		pos.y = pos.y+1
+		if minetest.get_node(pos).name == "lantern:fence_lampost" then
+			minetest.remove_node(pos)
+		end
+	end
+
+	if az == 0 then
+		pos.x = pos.x+ax
+	else
+		pos.z = pos.z+az
+	end
+	if minetest.get_node(pos).name == "lantern:fence_lampost" then
+		minetest.remove_node(pos)
+	end
+end
+
+minetest.register_node("lantern:lamp_post", {
+	description = "Lamp post",
+	tiles = {"default_obsidian.png", "default_obsidian.png", "lantern_lamp.png"},
+	inventory_image = "lamppost_inv.png",
+	wield_image = "lamppost_inv.png",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	legacy_facedir_simple = true,
+	sunlight_propagates = true,
+	light_source = LIGHT_MAX - 1,
+	groups = {cracky = 2, oddly_breakable_by_hand = 3},
+	sounds = default.node_sound_glass_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.2, -2.5, 0.8, 0.2, -1.3, 1.2}
+	},
+	on_destruct = function(pos)
+		remove_lamp(pos, minetest.get_node(pos).param2)
+	end,
+	after_place_node = function(pos, player)
+		place_lamp(pos, minetest.get_node(pos).param2, player:get_player_name())
+	end,
+})
+
+
 --
--- the nodes lantern:lamp1, lamp2, lamp3 and lamp4 are only used for the lamposts and can't be crafted/used by the player
--- these nodes are also removing the lantern with "after_dig_node"
+-- legacy
 --
-minetest.register_node("lantern:lamp1", {
-	description = "Lamp1",
-	drop = 'lantern:lantern_lampost1',
-	tiles = {"default_obsidian.png", "default_obsidian.png", "lantern_lamp.png", "lantern_lamp.png", "lantern_lamp.png", "lantern_lamp.png"},
-	paramtype = "light",
-	sunlight_propagates = true,
-	walkable = true,
-	light_source = LIGHT_MAX - 1,
-	groups = {cracky = 2, oddly_breakable_by_hand = 3, not_in_creative_inventory = 1},
-	sounds = default.node_sound_glass_defaults(),
-	selection_box = {
-	type = "fixed",
-	fixed = {-0.5, -2.5, -0.5, 1.5, 1.5, 0.5},
-	},
-	after_dig_node = function(pos)
-		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z})
-		minetest.remove_node({x = pos.x + 1, y = pos.y + 1, z = pos.z })
-		minetest.remove_node({x = pos.x + 1, y = pos.y , z = pos.z })
-		minetest.remove_node({x = pos.x + 1, y = pos.y - 1, z = pos.z })
-		minetest.remove_node({x = pos.x + 1, y = pos.y - 2, z = pos.z })
-	end
-})
 
-minetest.register_node("lantern:lamp2", {
-	description = "Lamp2",
-	drop = 'lantern:lantern_lampost2',
-	tiles = {"default_obsidian.png", "default_obsidian.png", "lantern_lamp.png", "lantern_lamp.png", "lantern_lamp.png", "lantern_lamp.png"},
-	paramtype = "light",
-	sunlight_propagates = true,
-	walkable = true,
-	light_source = LIGHT_MAX - 1,
-	groups = {cracky = 2, oddly_breakable_by_hand = 3, not_in_creative_inventory = 1},
-	sounds = default.node_sound_glass_defaults(),
-	selection_box = {
-	type = "fixed",
-	fixed = {-0.5, -2.5, -0.5, 0.5, 1.5, 1.5},
-	},
-	after_dig_node = function(pos)
-		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z})
-		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z + 1})
-		minetest.remove_node({x = pos.x, y = pos.y , z = pos.z + 1})
-		minetest.remove_node({x = pos.x, y = pos.y - 1, z = pos.z + 1})
-		minetest.remove_node({x = pos.x, y = pos.y - 2, z = pos.z + 1})
-	end
-})
+for i = 1,4 do
+	minetest.register_alias("lantern:lantern_lampost"..i, "lantern:lamp_post")
+	minetest.register_node("lantern:lamp"..i, {groups = {old_lamp = 1, not_in_creative_inventory = 1}})
+end
 
-minetest.register_node("lantern:lamp3", {
-	description = "Lamp3",
-	drop = 'lantern:lantern_lampost3',
-	tiles = {"default_obsidian.png", "default_obsidian.png", "lantern_lamp.png", "lantern_lamp.png", "lantern_lamp.png", "lantern_lamp.png"},
-	paramtype = "light",
-	sunlight_propagates = true,
-	walkable = true,
-	light_source = LIGHT_MAX - 1,
-	groups = {cracky = 2, oddly_breakable_by_hand = 3, not_in_creative_inventory = 1},
-	sounds = default.node_sound_glass_defaults(),
-	selection_box = {
-	type = "fixed",
-	fixed = {-1.5, -2.5, -0.5, 0.5, 1.5, 0.5},
-	},
-	after_dig_node = function(pos)
-		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z})
-		minetest.remove_node({x = pos.x - 1, y = pos.y + 1, z = pos.z})
-		minetest.remove_node({x = pos.x - 1, y = pos.y , z = pos.z})
-		minetest.remove_node({x = pos.x - 1, y = pos.y - 1, z = pos.z})
-		minetest.remove_node({x = pos.x - 1, y = pos.y - 2, z = pos.z})
-	end
-})
+-- gets param2 from the old typ
+local typ2param = {1,0,3,2}
 
-minetest.register_node("lantern:lamp4", {
-	description = "Lamp4",
-	drop = 'lantern:lantern_lampost4',
-	tiles = {"default_obsidian.png", "default_obsidian.png", "lantern_lamp.png", "lantern_lamp.png", "lantern_lamp.png", "lantern_lamp.png"},
-	paramtype = "light",
-	sunlight_propagates = true,
-	walkable = true,
-	light_source = LIGHT_MAX - 1,
-	groups = {cracky = 2, oddly_breakable_by_hand = 3, not_in_creative_inventory = 1},
-	sounds = default.node_sound_glass_defaults(),
-	selection_box = {
-	type = "fixed",
-	fixed = {-0.5, -2.5, -1.5, 0.5, 1.5, 0.5},
-	},
-	after_dig_node = function(pos)
-		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z})
-		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z - 1})
-		minetest.remove_node({x = pos.x, y = pos.y , z = pos.z - 1})
-		minetest.remove_node({x = pos.x, y = pos.y - 1, z = pos.z - 1})
-		minetest.remove_node({x = pos.x, y = pos.y - 2, z = pos.z - 1})
-	end
+minetest.register_abm({
+	nodenames = {"group:old_lamp"},
+	interval = 10,
+	chance = 1,
+	action = function(pos, node)
+		local typ = tonumber(string.sub(node.name, -1))
+		if not typ then
+			error("[lantern] legacy: error with replacing old lamp")
+		end
+		minetest.set_node(pos, {name = "lantern:lamp_post", param2 = typ2param[typ]})
+	end,
 })
