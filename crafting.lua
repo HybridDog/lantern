@@ -1,15 +1,26 @@
-
-
 --
 -- register crafting recipes:
 --
-minetest.register_craft({
-	output = "lantern:candle 12",
-	recipe = {
-		{"default:coal_lump","default:coal_lump"},
-		{"group:stick","group:stick"},
-	}
-})
+
+if minetest.registered_items["homedecor:paraffin"]
+and minetest.registered_items["farming:cotton"] then
+	minetest.register_craft({
+		output = "lantern:candle 12",
+		recipe = {
+			{"homedecor:paraffin", "farming:cotton", "homedecor:paraffin"},
+			{"homedecor:paraffin", "farming:cotton", "homedecor:paraffin"},
+			{"homedecor:paraffin", "farming:cotton", "homedecor:paraffin"},
+		}
+	})
+else
+	minetest.register_craft({
+		output = "lantern:candle 12",
+		recipe = {
+			{"default:coal_lump","default:coal_lump"},
+			{"group:stick","group:stick"},
+		}
+	})
+end
 
 minetest.register_craft({
 	output = "lantern:lantern 4",
